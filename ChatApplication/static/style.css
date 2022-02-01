@@ -1,0 +1,14 @@
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+body {
+    height: 100%;
+}
