@@ -2,11 +2,12 @@ from flask import Blueprint, request, render_template
 
 controllers = Blueprint('controllers', __name__)
 
-@controllers.route('/signup', methods = ['GET', 'POST'])
-def signup():
+@controllers.route('/register', methods = ['GET', 'POST'])
+def register():
     if request.method == 'POST':
         pass
-    return render_template('signup.html')
+    else:
+        return render_template('register.html')
 
 @controllers.route('/login', methods = ['GET', 'POST'])
 def login():
