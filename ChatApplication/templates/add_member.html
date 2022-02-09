@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Add Member - Riktam Chat App {% endblock %}
+{% block content %}
+    <h3> Add New Member in Group - {{ group.name }}</h3>
+    <form method="POST">
+      <div class="form-group" action="{{ url_for('groups.add_member', group_id=group.id) }}">
+        <label for="member"> Choose an user</label>
+        <select
+          type="member"
+          class="form-control"
+          id="member"
+          name="member"
+        >
+        {% for usr in users %}
+          <option value="{{ usr.id }}">{{ usr.first_name }} {{ usr.last_name }} - {{ usr.email }}</option>
+        {% endfor %}
+        </select>
+      </div>
+      <br />
+      <button type="submit" class="btn btn-primary">Add Member</button>
+    </form>
+{% endblock %}

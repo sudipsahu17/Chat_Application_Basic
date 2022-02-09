@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Update Group - Riktam Chat App {% endblock %}
+{% block content %}
+    <h3> Update Group Info - {{ group.name }}</h3>
+    <form method="POST">
+      <div class="form-group" action="{{ url_for('groups.update_group', group_id=group.id) }}">
+        <div class="form-group">
+        <label for="name">Group Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          value="{{ group.name }}"
+        />
+        </div>
+        <div class="form-group">
+        <label for="admin">Group Admin</label>
+        <select
+          type="admin"
+          class="form-control"
+          id="admin"
+          name="admin"
+        >
+        {% for member in members %}
+         {% if member.user|string() == group.admin|string() %}
+          <option value="{{ member.user.id }}" selected>{{ member.user.first_name }} {{ member.user.last_name }} - {{ member.user }}</option>
+         {% else %}
+           <option value="{{ member.user.id }}">{{ member.user.first_name }} {{ member.user.last_name }} - {{ member.user }}</option>
+         {% endif %}
+        {% endfor %}
+        </select>
+        </div>
+      </div>
+      <br />
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+{% endblock %}

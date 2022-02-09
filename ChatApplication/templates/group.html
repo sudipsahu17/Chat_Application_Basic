@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %} Actions - Riktam Chat App {% endblock %}
+{% block content %}
+        <div class="row" style="background-color: rgba(153, 153, 102, 0.5);">
+            <div class="col">
+                <h1>{{ user.first_name }} - Groups</h1>
+            </div>
+            <div class="col" style="margin: 15px;">
+                <button type="button" class="btn btn-success btn-sm m-0"
+                        onclick="window.location.href='{{ url_for('groups.create_group') }}'">Create New Group</button>
+            </div>
+        </div>
+        <hr />
+        <div class="container" style="background-color: white;">
+        <table class="table table-striped table-responsive-md btn-table">
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Group Name</th>
+            <th>Chat</th>
+            <th>Member Action</th>
+            <th>Group Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for group in groups %}
+          <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ group.name }}</td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm m-0">Chat</button>
+            </td>
+
+            <td>
+              {% if user.email|string() == group.admin|string() %}
+              <button type="button" class="btn btn-primary btn-sm m-0"
+                      onclick="window.location.href='{{ url_for('groups.add_member', group_id=group.id) }}'">
+                  Add Member
+              </button>
+              <button type="button" class="btn btn-warning btn-sm m-0"
+                      onclick="window.location.href='{{ url_for('groups.remove_member', group_id=group.id) }}'">
+                  Remove Member
+              </button>
+              {% endif %}
+              <button type="button" class="btn btn-primary btn-sm m-0"
+                      onclick="window.location.href='{{ url_for('groups.show_member', group_id=group.id) }}'">
+                  Show Members
+              </button>
+            </td>
+            <td>
+              {% if user.email|string() == group.admin|string() %}
+              <button type="button" class="btn btn-primary btn-sm m-0"
+                      onclick="window.location.href='{{ url_for('groups.update_group', group_id=group.id) }}'">
+                  Update
+              </button>
+              <button type="button" class="btn btn-danger btn-sm m-0"
+                      onclick="window.location.href='{{ url_for('groups.delete_group', group_id=group.id) }}'">
+                  Delete
+              </button>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        </div>
+
+{% endblock %}

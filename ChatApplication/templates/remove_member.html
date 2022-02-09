@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Remove Member - Riktam Chat App {% endblock %}
+{% block content %}
+    <h3> Remove Member From Group - {{ group.name }}</h3>
+    <form method="POST">
+      <div class="form-group" action="{{ url_for('groups.remove_member', group_id=group.id) }}">
+        <label for="member"> Choose an member</label>
+        <select
+          type="member"
+          class="form-control"
+          id="member"
+          name="member"
+        >
+        {% for member in members %}
+          <option value="{{ member.user.id }}">{{ member.user.first_name }} {{ member.user.last_name }} - {{ member.user }}</option>
+        {% endfor %}
+        </select>
+      </div>
+      <br />
+      <button type="submit" class="btn btn-danger">Remove Member</button>
+    </form>
+{% endblock %}

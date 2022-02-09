@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Delete Group - Riktam Chat App {% endblock %}
+{% block content %}
+    <h3> Delete Group - {{ group.name }}</h3>
+    <form method="POST">
+      <div class="form-group" action="{{ url_for('groups.delete_group', group_id=group.id) }}">
+        <div class="form-group">
+        <label for="name">Group Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          value="{{ group.name }}"
+          disabled
+        />
+        </div>
+        <div class="form-group">
+        <label for="admin">Group Admin</label>
+        <input
+          type="text"
+          class="form-control"
+          id="admin"
+          name="admin"
+          value="{{ group.admin }}"
+          disabled
+        />
+        </div>
+      </div>
+      <br />
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+{% endblock %}

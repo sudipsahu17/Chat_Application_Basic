@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Create Group - Riktam Chat App {% endblock %}
+{% block content %}
+    <h3> Create New Group </h3>
+    <form method="POST">
+      <div class="form-group" action="{{ url_for('groups.create_group') }}">
+        <div class="form-group">
+        <label for="name">Group Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Enter Group Name"
+        />
+        </div>
+      </div>
+      <br />
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+{% endblock %}

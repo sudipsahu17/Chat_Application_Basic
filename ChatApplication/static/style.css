@@ -9,6 +9,22 @@ footer {
     padding: 10px;
 }
 
-body {
+body, html {
     height: 100%;
+    margin: 0px;
+}
+
+.bg {
+  background-image: url("hd.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.h1_modify {
+    color: white;
+    text-align:center;
+    background-color: rgba(153, 153, 102, 0.5);
+    font-weight: bold;
 }
