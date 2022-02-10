@@ -1,7 +1,7 @@
 # Chat_Application_Basic
 Basic real time chat web application
 
-Technology Used:
+**Technology Used:**
 ----------------------------------
 Python (Backend Server Programming)
 HTML
@@ -10,7 +10,7 @@ Javascript (Front end client programming)
 Jinja (Template)
 MySQL (Database)
 
-Library Used:
+**Library Used:**
 _________________________________
 Flask (To create the APIs)
 Flask-SQLAlchemy (as a ORM, to do the database related queries) 
