@@ -162,16 +162,19 @@ def update_group(group_id):
         group = Group.query.filter_by(id=group_id).first()
         if group and group.admin_id == current_user.id:
             if request.method == 'POST':
-                group_name = request.form.get('name')
+                group_name = str(request.form.get('name')).strip()
                 group_admin = int(request.form.get('admin'))
-                new_group = Group.query.filter_by(name=group_name).first()
-                if new_group:
-                   flash('Group name - ' + group_name + ' is already exist !! Try with some other name !!', category='error')
+                if group_name:
+                    new_group = Group.query.filter_by(name=group_name).first()
+                    if new_group:
+                       flash('Group name - ' + group_name + ' is already exist !! Try with some other name !!', category='error')
+                    else:
+                        group.name = group_name
+                        group.admin_id = group_admin
+                        db.session.commit()
+                        flash('Group information is updated successfully !!', category='success')
                 else:
-                    group.name = group_name
-                    group.admin_id = group_admin
-                    db.session.commit()
-                    flash('Group information is updated successfully !!', category='success')
+                    flash('Invalid group name !!', category='error')
             else:
                 group_members = GroupUser.query.filter_by(group_id=group.id).all()
                 return render_template('update_group.html', user=current_user, group=group, members=group_members)
@@ -204,19 +207,22 @@ def delete_group(group_id):
 @login_required
 def create_group():
     if request.method == 'POST':
-        name = request.form.get('name')
-        admin = current_user.id
-        new_group = Group.query.filter_by(name=name).first()
-        if new_group:
-            flash('Group name - ' + name + ' is already exist !! Try with some other name !!', category='error')
+        name = str(request.form.get('name')).strip()
+        if name:
+            admin = current_user.id
+            new_group = Group.query.filter_by(name=name).first()
+            if new_group:
+                flash('Group name - ' + name + ' is already exist !! Try with some other name !!', category='error')
+            else:
+                group = Group(name=name, admin_id=admin)
+                db.session.add(group)
+                db.session.flush()
+                db.session.refresh(group)
+                group_user = GroupUser(user_id = admin, group_id = group.id)
+                db.session.add(group_user)
+                db.session.commit()
+                flash('Group - ' + name + ' is create successfully !!', category='success')
+                return redirect(url_for('groups.get_groups'))
         else:
-            group = Group(name=name, admin_id=admin)
-            db.session.add(group)
-            db.session.flush()
-            db.session.refresh(group)
-            group_user = GroupUser(user_id = admin, group_id = group.id)
-            db.session.add(group_user)
-            db.session.commit()
-            flash('Group - ' + name + ' is create successfully !!', category='success')
-            return redirect(url_for('groups.get_groups'))
+            flash('Invalid group name !!', category='error')
     return render_template('create_group.html', user=current_user)

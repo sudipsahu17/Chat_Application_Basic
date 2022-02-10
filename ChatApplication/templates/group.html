@@ -30,7 +30,10 @@
             <th scope="row">{{ loop.index }}</th>
             <td>{{ group.name }}</td>
             <td>
-              <button type="button" class="btn btn-success btn-sm m-0">Chat</button>
+              <button type="button" class="btn btn-success btn-sm m-0"
+                      onclick="window.location.href='{{ url_for('chats.chat', group_id=group.id) }}'">
+                  Chat
+              </button>
             </td>
 
             <td>

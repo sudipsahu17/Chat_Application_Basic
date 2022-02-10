@@ -28,3 +28,24 @@ body, html {
     background-color: rgba(153, 153, 102, 0.5);
     font-weight: bold;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+.chatwindow{
+  position: absolute;
+	top:50;
+	bottom: 50;
+	left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  padding: 30px;
+}
+
+.chat_window {
+    overflow: auto;
+    background-color: white;
+    height: 400px;
+    width: 700px;
+    margin: 0 0 2% 23%;
+    color: black;
+}

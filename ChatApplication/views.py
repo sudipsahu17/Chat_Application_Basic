@@ -31,9 +31,9 @@ class AdminHomeView(AdminMixin, AdminIndexView):
     pass
 
 def admin_user_view(app):
-    admin = Admin(app, 'ChatApp', url='/', index_view=AdminHomeView(name='Admin'))
+    admin = Admin(app, 'Chat App', url='/', index_view=AdminHomeView(name='Admin'))
     admin.add_view(AdminUserView(User, db.session))
-    admin.add_view(ModelView(Role, db.session))
-    admin.add_view(ModelView(Group, db.session))
-    admin.add_view(ModelView(GroupUser, db.session))
-    admin.add_view(ModelView(Message, db.session))
+    # admin.add_view(ModelView(Role, db.session))
+    # admin.add_view(ModelView(Group, db.session))
+    # admin.add_view(ModelView(GroupUser, db.session))
+    # admin.add_view(ModelView(Message, db.session))
