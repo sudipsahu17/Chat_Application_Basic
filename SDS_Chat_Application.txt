@@ -1,0 +1,26 @@
+Software Design Specification
+-----------------------------------------------
+Application: Web Chat Application
+Purpose: Real Time Group Chat
+----------------------------------------------
+
+Functionalities:
+----------------------------------------------
+1. Basic Functionalities:
+	1.1. Registration/ Signup (API - /register)
+	1.2. Login/ AUthentication (API - /login)
+
+2. Admin Functionalities:
+	2.1. Create User (API - /admin/user/create)
+	2.2. Edit/ Add User (API - /admin/user/edit)
+	2.3. Remove User (API - /admin/user/delete)
+
+3. Normal User Functionalities:
+	3.1. Create Group (API - /groups/create)
+	3.2. Show Groups (API - /groups)
+	3.3. Update Group Info (API - /groups/update)
+	3.4. Delete Group (API - /groups/delete)
+	3.5. Add Member to Group - (API - /groups/add)
+	3.6. Show members of a Group (API - /groups/show)
+	3.7. Remove Member from a Group - (API - /groups/remove)
+	3.8. Join a Group and Chat -  (API - /chats)
